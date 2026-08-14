@@ -1,0 +1,44 @@
+CSV
+#1 csv.reader(file)
+CSV file converted into a Python list of strings, each row is a list
+with open("data.csv","r") as file:
+	reader=csv.reader(file)
+	*allrows=list(reader)	converts whole file into a list
+	*headers=next(file)	skips a row
+	for row in reader:
+	print(row)
+
+#2 csv.writer(file)
+with open("output.csv","w",newline='') as file:		*newline, if not used, a blank line is inserted after every	 	writer=csv.writer(file)				 line of code 
+	writer.writerow(header)
+	writer.writerows(data)											
+
+DICT METHODS
+users.csv:
+Name, Age,Job
+Alice,28,Developer
+Bob,32,Designer
+
+#3 csv.DictReader(file)
+with open("users.csv,"r") as file:
+	reader=csv.DictReader(file)
+	for row in reader:
+		print(f"{row["Name"]} works as {row["Job"]}
+*DictReader skips the header and uses it as keys
+
+#4 csv.DictWriter(file)
+data=[
+      {'Name':'Alice','Age':'28','Job':'Developer'},
+      {'Name':'Bob','Age':'32','Job':'Designer'},
+     ]
+field_names=['Name','Age','Job']
+with open('output.csv','w', newline='') as file:
+	writer=csv.DictWriter(file, fieldnames=field_names)
+	writer.writeheader()	*writes fieldnames as header
+	writer.writerows(data)
+
+
+#5 If separator is not ,
+csv.reader(file,delimiter=';')
+				 
+	

@@ -1,0 +1,76 @@
+REGULAR EXPRESSIONS
+-mini language to find, match, validate/manipulate certain combos of characters within a string
+
+REGEX FUNCTIONS
+I-FINDING MATCHES
+re.search(pattern,string)	Scans thorugh entire string to find the first location where the pattern matches
+Returns re.Match object...you can access match details via:
+match=re.search(r"^(.+),(.+)$",name)
+⁭first=match.group(1)
+last=match.group(2)
+
+.group() or .group(0)		returns substring that matched the pattern 
+.group(1), group(2)		
+.start()			returns starting index of match
+.end()				returns ending index of match
+.span()				retruns tuple containing (start,end) index positions
+
+
+re.match(pattern,string)	Checks if match only at start of string(index[0:?])
+re.fullmatch(pattern,string)	matches pattern in entire string
+II-MULTIPLE MATCHES
+re.findall(pattern,string)	Finds all non overlapping matches and returns a list of matching strings
+re.finditer(pattern,string)	Same as findall, but iterates over the matches and returns them one by one
+III.MODIFYING, SPLITTING STRINGS
+re.sub(pattern,replacement,string)	return new modified string
+re.subn(pattern,replacement,string)	returns tuple(newstring,count of replacements)
+re.split(pattern,string)	splits string on occurence of pattern and returns a list 
+
+
+HOW IT WORKS-FINITE STATE MACHINE
+FORMAT: <character><quantity>
+
+.	any character except newline
+*	0 or more repetitions
++	1 or more repetition
+?	0 or 1 repetition
+{m}	m repetitions
+{m,n}	m-n repetitions
+^	we must be at the very start of the string
+$	we must be at the very end of the string or just before newline at end of string
+[abcdef...]=[$a-z] OR [a-zA-Z0-9_!]	many any ONE character from the set inside	******square brackets can 					only be used when value has 1 or 2 characters. like [099] is possible but [0					-255] not possible
+[a-zA-Z0-9_!] is \w
+[^0-9]	negation of above, match any ONE character not in the set
+|	OR, re.match("cat|dog",text)
+()	GROUPS: groups part of pattern together so they captured what matched and then get out
+		(r"(cat|dog)s",text) matches to either cat/dOG and adds s to it
+(?:)	NON CAPTURING GROUPS:
+
+
+BACKSLASH ESCAPE CHARACTERS
+\\	\
+\'	'
+\"	"
+\b	deletes character before it
+\t,\v	tab, vertical tab
+
+REGEX ESCAPE CHARACTERS(use only with re and rawstring)
+\d	any digit	        	\D  no digit
+\w	word character class		\W  negation of prev
+\s	any space, tab, newline		\S  negation
+
+FLAGS
+{format: re.search(pattern,input text,flags)}
+re.IGNORECASE/re.I
+re.MULTILINE/re.M	-makes ^ and $ match the start/end of each line, not just whole string
+re.DOTALL/re.S		-makes . match newlines too
+re.VERBOSE/re.X		-can match the pattern over multiple lines, ignoring comments and whitespace
+*********************************************************************************************************************#email checker
+import re
+re.search("..*@..*",email)=re.search(".+@.+",email)	
+	first . represents atleast one character
+	second .* represents second character ka 0 or more reps
+	then @ followed by ..* meaning the same
+
+#using \special character, with rawstring ignores the \ and only considers the stuff after it
+

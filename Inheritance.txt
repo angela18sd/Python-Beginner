@@ -1,0 +1,55 @@
+INHERITANCE
+class Animal:
+	...do init to input name, breed, age
+	def eat(self):
+		print(f"{self.name} has eaten")
+	def sleep(self):
+		print(f"{self.name} has slept")
+class Dog(Animal):
+	pass				#inherits all properties of Animal class
+class Cat(Animal):
+	def food(self):				#defining unique functions in addition to common inherited ones
+		print(f"{self.name} eats fish")
+	def speak(self):
+		print(f"MEOW!")
+class Horse(Animal):
+	def speak(self):
+		print(f"NEIGH!")
+
+dog=Dog(Winnie,Dachshund,2)
+cat=Cat(Blue,Maine Coon,10)
+horse=Horse(Lightning,Clydesdale,5)
+dog.greet()
+cat.food()
+horse.speak()
+
+
+MULTIPLE INHERITANCE
+Animal--->Grandparent
+Prey,Predator--->Parent
+Rabbit,Snake--->Children
+
+
+super()
+Function used in child class to call methods from a parent class(superclass). Extends functionality of inherited methods
+
+class Shape:
+    def __init__(self,colour,is_filled):
+        self.colour=colour
+        self.is_filled=is_filled
+    def describe(self):
+        print(f"It is {self.colour} and {'filled' if self.is_filled else 'not filled'}")
+class Circle(Shape):
+    def __init__(self,radius,colour,is_filled):
+        super().__init__(colour,is_filled)
+        self.radius=radius
+    def describe(self):
+        return(f"{superwith radius {radius})
+
+circle=Circle(7,"Red","False")
+print(f"{circle.radius}\n{circle.is_filled}")
+print(f"{circle.describe}")
+
+
+
+

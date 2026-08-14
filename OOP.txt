@@ -1,0 +1,66 @@
+OBJECT ORIENTED PROGRAMMING
+
+1. Class Anatomy & Constructor (__init__)
+The class acts as a blueprint, and __init__ is the constructor method that automatically runs when an instance (object) is created. It assigns initial values to the instance's variables using self.
+
+class Dog:
+    food=Dog treats		#class variable, shared by all objects, Dog.food=Dog treats
+    def __init__(self, name, breed,age):
+        # Attach parameters to the specific instance
+        self.name = name
+        self.breed = breed
+	self.age=age
+
+# Instantiation: automatically triggers __init__
+dog1=Dog("Alex", Poodle)
+
+
+2. Raising Exceptions & Error Catching (raise / try-except)
+i)raise: Used inside class methods to manually throw an error when invalid inputs or illegal states occur.
+ii)try-except: Used by the caller (outside code) to gracefully catch and handle those errors without crashing the program.
+
+class Dog:
+    def __init__(name, breed, age):
+        if age < 0:
+            raise ValueError("Age cannot be negative.")
+     
+
+# Error catching block~inside main() block
+try:
+    age=input("Enter age")
+except ValueError as e:
+    print(f"Error:{e}")
+
+
+3. String Representation (__str__)
+The __str__ method defines what should be displayed when an object is converted to a string or passed into print().
+
+Key Rule: __str__ must return a string (str). It cannot use print() inside itself because Python expects a return value to substitute where the object is referenced.
+
+class Dog:
+    def __init__(self, name, breed,age)
+        self.name = name
+        self.breed = breed
+	self.age=age
+
+    def __str__(self) -> str:
+        # WRONG: print(f"{self.name}: ${self.breed}") -> Returns None!
+        # RIGHT: Always return the string
+        return f"Name: {self.name} | Breed: ${self.breed}"
+
+dog2 = Dog("Winnie", German Shephard)
+print(dog2)  # Implicitly calls dog2.__str__()
+
+4.custom methods- defined inside the class Dog
+class Dog:
+	...
+	def get_age(self)
+		print(f"{self.name}:{self.age}")
+5.Main: in the main method,use try and except statements on the inputs. 
+then do if __name__=="__main__":
+	main()
+
+DECORATOR
+Special tags starting with @ that modify how a function behaves
+PROPERTIES, GETTERS, SETTERS~ you want to protect variables from bad data
+
